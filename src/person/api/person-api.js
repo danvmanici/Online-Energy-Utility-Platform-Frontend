@@ -56,5 +56,6 @@ function putPerson(user, callback){
 export {
     getPersons,
     getPersonById,
-    postPerson
+    postPerson,
+    putPerson
 };
