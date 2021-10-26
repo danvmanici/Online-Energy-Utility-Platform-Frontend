@@ -33,7 +33,7 @@ const NavigationBar = () => (
                     <DropdownMenu right >
 
                         <DropdownItem>
-                            <NavLink href="/person">Persons</NavLink>
+                            <NavLink href="/client">Clients</NavLink>
                         </DropdownItem>
                         <DropdownItem>
                             <NavLink href="/device">Devices</NavLink>
