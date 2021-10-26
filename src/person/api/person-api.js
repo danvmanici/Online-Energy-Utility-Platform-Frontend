@@ -24,7 +24,7 @@ function getPersonById(params, callback){
 }
 
 function postPerson(user, callback){
-    let request = new Request(HOST.backend_api + endpoint.person , {
+    let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
         method: 'POST',
         headers : {
             'Accept': 'application/json',
