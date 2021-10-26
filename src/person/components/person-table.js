@@ -8,8 +8,12 @@ const columns = [
         accessor: 'name',
     },
     {
-        Header: 'Age',
-        accessor: 'age',
+        Header: 'Birthdate',
+        accessor: 'birthdate',
+    },
+    {
+        Header: 'Address',
+        accessor: 'address',
     }
 ];
 

@@ -77,8 +77,11 @@ class PersonContainer extends React.Component {
                     <br/>
                     <Row>
                         <Col sm={{size: '8', offset: 1}}>
-                            <Button color="primary" onClick={this.toggleForm}>Add Person </Button>
+                            <Button color="primary" onClick={this.toggleForm}>Add Client </Button>
+                            <Button color="primary" onClick={this.toggleForm}>Update Client </Button>
+                            <Button color="primary" onClick={this.toggleForm}>Delete Client </Button>
                         </Col>
+
                     </Row>
                     <br/>
                     <Row>
