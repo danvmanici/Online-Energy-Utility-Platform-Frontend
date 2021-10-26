@@ -38,6 +38,21 @@ function postPerson(user, callback){
     RestApiClient.performRequest(request, callback);
 }
 
+function putPerson(user, callback){
+    let request = new Request(HOST.backend_api + endpoint.person + "/update" , {
+        method: 'PUT',
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)
+    });
+
+    console.log("URL: " + request.url);
+
+    RestApiClient.performRequest(request, callback);
+}
+
 export {
     getPersons,
     getPersonById,

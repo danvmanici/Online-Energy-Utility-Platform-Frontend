@@ -97,6 +97,20 @@ class PersonForm extends React.Component {
         });
     }
 
+    updatePerson(person) {
+        return API_USERS.putPerson(person, (result, status, error) => {
+            if (result !== null && (status === 200 || status === 201)) {
+                console.log("Successfully inserted person with id: " + result);
+                this.reloadHandler();
+            } else {
+                this.setState(({
+                    errorStatus: status,
+                    error: error
+                }));
+            }
+        });
+    }
+
     handleSubmit() {
         let person = {
             name: this.state.formControls.name.value,
