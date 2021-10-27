@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 import PersonForm from "./components/person-form";
 
+
 import * as API_USERS from "./api/person-api"
 import PersonTable from "./components/person-table";
 
@@ -102,6 +103,8 @@ class PersonContainer extends React.Component {
                         <PersonForm reloadHandler={this.reload}/>
                     </ModalBody>
                 </Modal>
+
+
 
             </div>
         )

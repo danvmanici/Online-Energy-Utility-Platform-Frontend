@@ -50,6 +50,7 @@ class PersonForm extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmitUpdate = this.handleSubmitUpdate.bind(this);
     }
 
     toggleForm() {
@@ -122,6 +123,17 @@ class PersonForm extends React.Component {
         this.registerPerson(person);
     }
 
+    handleSubmitUpdate() {
+        let person = {
+            name: this.state.formControls.name.value,
+            birthdate: this.state.formControls.birthdate.value,
+            address: this.state.formControls.address.value
+        };
+
+        console.log(person);
+        this.updatePerson(person);
+    }
+
     render() {
         return (
             <div>
@@ -154,7 +166,7 @@ class PersonForm extends React.Component {
                 <FormGroup id='birthdate'>
                     <Label for='birthdateField'> Birthdate: </Label>
                     <Input name='birthdate' id='birthdateField' placeholder={this.state.formControls.birthdate.placeholder}
-                           min={0} max={100} type="number"
+                           min={0} max={100} type="date"
                            onChange={this.handleChange}
                            defaultValue={this.state.formControls.birthdate.value}
                            touched={this.state.formControls.birthdate.touched? 1 : 0}
@@ -166,6 +178,7 @@ class PersonForm extends React.Component {
                     <Row>
                         <Col sm={{size: '4', offset: 8}}>
                             <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmit}>  Submit </Button>
+                            <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmitUpdate}>  Update </Button>
                         </Col>
                     </Row>
 
