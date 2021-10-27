@@ -217,11 +217,9 @@ class PersonForm extends React.Component {
                 </FormGroup>
 
                     <Row>
-                        <Col sm={{size: '4', offset: 8}}>
                             <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmit}>  Insert </Button>
                             <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmitUpdate}>  Update </Button>
                             <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmitDelete}>  Delete </Button>
-                        </Col>
                     </Row>
 
                 {
