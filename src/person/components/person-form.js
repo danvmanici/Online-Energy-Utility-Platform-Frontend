@@ -23,6 +23,12 @@ class PersonForm extends React.Component {
             formIsValid: false,
 
             formControls: {
+                id: {
+                    value: '',
+                    placeholder: 'Id...',
+                    valid: false,
+                    touched: false,
+                },
                 name: {
                     value: '',
                     placeholder: 'What is your name?...',
@@ -51,6 +57,7 @@ class PersonForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmitUpdate = this.handleSubmitUpdate.bind(this);
+        this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
     }
 
     toggleForm() {
@@ -112,6 +119,20 @@ class PersonForm extends React.Component {
         });
     }
 
+    removePerson(person) {
+        return API_USERS.deletePerson(person, (result, status, error) => {
+            if (result !== null && (status === 200 || status === 201)) {
+                console.log("Successfully inserted person with id: " + result);
+                this.reloadHandler();
+            } else {
+                this.setState(({
+                    errorStatus: status,
+                    error: error
+                }));
+            }
+        });
+    }
+
     handleSubmit() {
         let person = {
             name: this.state.formControls.name.value,
@@ -125,6 +146,7 @@ class PersonForm extends React.Component {
 
     handleSubmitUpdate() {
         let person = {
+            id: this.state.formControls.id.value,
             name: this.state.formControls.name.value,
             birthdate: this.state.formControls.birthdate.value,
             address: this.state.formControls.address.value
@@ -134,9 +156,28 @@ class PersonForm extends React.Component {
         this.updatePerson(person);
     }
 
+    handleSubmitDelete() {
+        let person = {
+            id: this.state.formControls.id.value,
+        };
+
+        console.log(person);
+        this.removePerson(person);
+    }
+
     render() {
         return (
             <div>
+                <FormGroup id='id'>
+                    <Label for='idField'> Id: </Label>
+                    <Input name='id' id='idField' placeholder={this.state.formControls.id.placeholder}
+                           onChange={this.handleChange}
+                           defaultValue={this.state.formControls.id.value}
+                           touched={this.state.formControls.id.touched? 1 : 0}
+                           valid={this.state.formControls.id.valid}
+                           //required
+                    />
+                </FormGroup>
 
                 <FormGroup id='name'>
                     <Label for='nameField'> Name: </Label>
@@ -145,7 +186,7 @@ class PersonForm extends React.Component {
                            defaultValue={this.state.formControls.name.value}
                            touched={this.state.formControls.name.touched? 1 : 0}
                            valid={this.state.formControls.name.valid}
-                           required
+                           //required
                     />
                     {this.state.formControls.name.touched && !this.state.formControls.name.valid &&
                     <div className={"error-message row"}> * Name must have at least 3 characters </div>}
@@ -159,7 +200,7 @@ class PersonForm extends React.Component {
                            defaultValue={this.state.formControls.address.value}
                            touched={this.state.formControls.address.touched? 1 : 0}
                            valid={this.state.formControls.address.valid}
-                           required
+                           //required
                     />
                 </FormGroup>
 
@@ -171,14 +212,15 @@ class PersonForm extends React.Component {
                            defaultValue={this.state.formControls.birthdate.value}
                            touched={this.state.formControls.birthdate.touched? 1 : 0}
                            valid={this.state.formControls.birthdate.valid}
-                           required
+                           //required
                     />
                 </FormGroup>
 
                     <Row>
                         <Col sm={{size: '4', offset: 8}}>
-                            <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmit}>  Submit </Button>
+                            <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmit}>  Insert </Button>
                             <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmitUpdate}>  Update </Button>
+                            <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmitDelete}>  Delete </Button>
                         </Col>
                     </Row>
 
