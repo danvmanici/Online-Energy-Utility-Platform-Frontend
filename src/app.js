@@ -31,6 +31,12 @@ class App extends React.Component {
                             render={() => <PersonContainer/>}
                         />
 
+                        <Route
+                            exact
+                            path='/device'
+                            render={() => <PersonContainer/>}
+                        />
+
                         {/*Error*/}
                         <Route
                             exact
