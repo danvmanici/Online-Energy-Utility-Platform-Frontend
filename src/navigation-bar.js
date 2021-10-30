@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from './commons/images/icon.png';
-
+import LoginContainer from "./person/login-container";
 import {
     DropdownItem,
     DropdownMenu,
@@ -45,6 +45,8 @@ const NavigationBar = () => (
 
                     </DropdownMenu>
                 </UncontrolledDropdown>
+
+               <LoginContainer></LoginContainer>
 
             </Nav>
         </Navbar>

@@ -5,6 +5,7 @@ import Home from './home/home';
 import PersonContainer from './person/person-container'
 import DeviceContainer from "./person/device-container";
 import SensorContainer from "./person/sensor-container";
+import LoginContainer from "./person/login-container";
 
 import ErrorPage from './commons/errorhandling/error-page';
 import styles from './commons/styles/project-style.css';
@@ -44,6 +45,8 @@ class App extends React.Component {
                             path='/sensor'
                             render={() => <SensorContainer/>}
                         />
+
+
 
                         {/*Error*/}
                         <Route
