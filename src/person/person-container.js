@@ -72,7 +72,7 @@ class PersonContainer extends React.Component {
         return (
             <div>
                 <CardHeader>
-                    <strong> Person Management </strong>
+                    <strong> Client Management </strong>
                 </CardHeader>
                 <Card>
                     <br/>
@@ -96,7 +96,7 @@ class PersonContainer extends React.Component {
 
                 <Modal isOpen={this.state.selected} toggle={this.toggleForm}
                        className={this.props.className} size="lg">
-                    <ModalHeader toggle={this.toggleForm}> Add Person: </ModalHeader>
+                    <ModalHeader toggle={this.toggleForm}> Client: </ModalHeader>
                     <ModalBody>
                         <PersonForm reloadHandler={this.reload}/>
                     </ModalBody>

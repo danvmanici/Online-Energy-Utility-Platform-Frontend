@@ -5,16 +5,23 @@ import * as API_USERS from "../api/login-api";
 import APIResponseErrorMessage from "../../commons/errorhandling/api-response-error-message";
 import {Col, Row} from "reactstrap";
 import { FormGroup, Input, Label} from 'reactstrap';
+import {Redirect} from "react-router-dom";
+
+
+
 
 class LoginForm extends React.Component{
 
     constructor(props) {
         super(props);
-        this.toggleForm = this.toggleForm.bind(this);
-        this.reloadHandler = this.props.reloadHandler;
-
+        //this.toggleForm = this.toggleForm.bind(this);
+        //this.reloadHandler = this.props.reloadHandler;
+        let loggedIn = false
         this.state = {
-
+            username: '',
+            password: '',
+            loggedIn
+            /*
             errorStatus: 0,
             error: null,
 
@@ -40,11 +47,17 @@ class LoginForm extends React.Component{
                     touched: false,
                 },
             }
-        };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+             */
+        }
+
+        //this.handleChange = this.handleChange.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.submitForm = this.submitForm.bind(this)
     }
+
+
 
     toggleForm() {
         this.setState({collapseForm: !this.state.collapseForm});
@@ -90,7 +103,8 @@ class LoginForm extends React.Component{
         });
     }
 
-    handleSubmit() {
+    handleSubmit(e) {
+
         let person = {
             username: this.state.formControls.username.value,
             password: this.state.formControls.password.value,
@@ -98,46 +112,42 @@ class LoginForm extends React.Component{
 
         console.log(person);
         this.loginUser(person);
+
+
+    }
+
+    submitForm(e){
+        e.preventDefault()
+        const {username, password} = this.state
+
+        if(username==="admin" && password==="admin"){
+            localStorage.setItem("token", "a")
+            this.setState({
+                loggedIn: true
+            })
+        }
+    }
+
+    onChange(e){
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     render() {
+        if (this.state.loggedIn) {
+            return <Redirect to="/client"/>
+        }
         return (
             <div>
+                <form onSubmit={this.submitForm}>
+                    <input type="text" placeholder="username" name={"username"} value={this.state.username} onChange={this.onChange}/>
+                    <br/>
+                    <input type="text" placeholder="password" name={"password"} value={this.state.password} onChange={this.onChange}/>
+                    <br/>
+                    <input type = "submit"/>
+                </form>
 
-                <FormGroup id='username'>
-                    <Label for='usernameField'> Username: </Label>
-                    <Input name='username' id='usernameField' placeholder={this.state.formControls.username.placeholder}
-                           onChange={this.handleChange}
-                           defaultValue={this.state.formControls.username.value}
-                           touched={this.state.formControls.username.touched? 1 : 0}
-                           valid={this.state.formControls.username.valid}
-                        //required
-                    />
-                    {this.state.formControls.username.touched && !this.state.formControls.username.valid &&
-                    <div className={"error-message row"}> * Name must have at least 3 characters </div>}
-                </FormGroup>
-
-
-                <FormGroup id='password'>
-                    <Label for='passwordField'> Password: </Label>
-                    <Input name='password' id='passwordField' placeholder={this.state.formControls.password.placeholder}
-                           onChange={this.handleChange}
-                           defaultValue={this.state.formControls.password.value}
-                           touched={this.state.formControls.password.touched? 1 : 0}
-                           valid={this.state.formControls.password.valid}
-                        //required
-                    />
-                </FormGroup>
-
-
-                <Row>
-                    <Button type={"submit"}  onClick={this.handleSubmit}>  Login </Button>
-                </Row>
-
-                {
-                    this.state.errorStatus > 0 &&
-                    <APIResponseErrorMessage errorStatus={this.state.errorStatus} error={this.state.error}/>
-                }
             </div>
         ) ;
     }
