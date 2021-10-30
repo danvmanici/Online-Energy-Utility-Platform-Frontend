@@ -4,6 +4,7 @@ import NavigationBar from './navigation-bar'
 import Home from './home/home';
 import PersonContainer from './person/person-container'
 import DeviceContainer from "./person/device-container";
+import SensorContainer from "./person/sensor-container";
 
 import ErrorPage from './commons/errorhandling/error-page';
 import styles from './commons/styles/project-style.css';
@@ -36,6 +37,12 @@ class App extends React.Component {
                             exact
                             path='/device'
                             render={() => <DeviceContainer/>}
+                        />
+
+                        <Route
+                            exact
+                            path='/sensor'
+                            render={() => <SensorContainer/>}
                         />
 
                         {/*Error*/}

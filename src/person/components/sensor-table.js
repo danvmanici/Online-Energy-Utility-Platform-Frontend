@@ -12,31 +12,22 @@ const columns = [
         accessor: 'description',
     },
     {
-        Header: 'Address',
-        accessor: 'address',
+        Header: 'Max_value',
+        accessor: 'max_value',
     },
     {
-        Header: 'Maximum_energy_consumption',
-        accessor: 'maximum_energy_consumption',
-    },
-    {
-        Header: 'Average_energy_consumption',
-        accessor: 'average_energy_consumption',
-    },
-    {
-        Header: 'Client_id',
-        accessor: 'client_id',
+        Header: 'SmartDevice_id',
+        accessor: 'smartDevice_id',
     }
 ];
 
 const filters = [
     {
-        accessor: 'client_id',
+        accessor: 'smartDevice_id',
     }
 ];
 
-
-class DeviceTable extends React.Component {
+class SensorTable extends React.Component {
 
     constructor(props) {
         super(props);
@@ -57,4 +48,4 @@ class DeviceTable extends React.Component {
     }
 }
 
-export default DeviceTable;
+export default SensorTable;
