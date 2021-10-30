@@ -250,9 +250,9 @@ class DeviceForm extends React.Component {
                 </FormGroup>
 
                 <Row>
-                    <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmit}>  Insert </Button>
-                    <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmitUpdate}>  Update </Button>
-                    <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmitDelete}>  Delete </Button>
+                    <Button type={"submit"}  onClick={this.handleSubmit}>  Insert </Button>
+                    <Button type={"submit"}  onClick={this.handleSubmitUpdate}>  Update </Button>
+                    <Button type={"submit"}  onClick={this.handleSubmitDelete}>  Delete </Button>
                 </Row>
 
                 {
