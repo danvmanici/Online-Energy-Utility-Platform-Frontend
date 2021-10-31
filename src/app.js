@@ -7,24 +7,36 @@ import DeviceContainer from "./person/device-container";
 import SensorContainer from "./person/sensor-container";
 import LoginContainer from "./person/login-container";
 
+import {Redirect} from "react-router-dom";
+
 import ErrorPage from './commons/errorhandling/error-page';
 import styles from './commons/styles/project-style.css';
+import Admin from "./person/components/Admin";
 
 class App extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state={
+            role: localStorage.getItem("role") || ''
+        }
+    }
 
     render() {
+
 
         return (
             <div className={styles.back}>
             <Router>
                 <div>
-                    <NavigationBar />
+
                     <Switch>
+
+
 
                         <Route
                             exact
-                            path='/'
+                            path='/home'
                             render={() => <Home/>}
                         />
 
@@ -46,7 +58,11 @@ class App extends React.Component {
                             render={() => <SensorContainer/>}
                         />
 
-
+                        <Route
+                            exact
+                            path='/admin'
+                            render={() => <Admin/>}
+                        />
 
                         {/*Error*/}
                         <Route

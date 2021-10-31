@@ -6,15 +6,21 @@ const endpoint = {
     person: '/user'
 };
 
-function getUser(params, callback){
-    let request = new Request(HOST.backend_api + endpoint.person + "/login", {
-        method: 'POST'
+function loginUser(params, callback){
+    let request = new Request(HOST.backend_api + endpoint.person + "/login" , {
+        method: 'POST',
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params)
     });
 
-    console.log(request.url);
+    console.log("URL: " + request.url);
+
     RestApiClient.performRequest(request, callback);
 }
 
 export {
-  getUser
+  loginUser
 };

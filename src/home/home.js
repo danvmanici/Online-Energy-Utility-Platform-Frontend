@@ -3,6 +3,8 @@ import React from 'react';
 import BackgroundImg from '../commons/images/future-medicine.jpg';
 
 import {Button, Container, Jumbotron} from 'reactstrap';
+import NavigationBar from "../navigation-bar";
+import NavigationBarNoMenu from "../navigation-bar-no-menu";
 
 const backgroundStyle = {
     backgroundPosition: 'center',
@@ -22,6 +24,7 @@ class Home extends React.Component {
         return (
 
             <div>
+                <NavigationBarNoMenu/>
                 <Jumbotron fluid style={backgroundStyle}>
                     <Container fluid>
                         <h1 className="display-3" style={textStyle}>Integrated Medical Monitoring Platform for Home-care assistance</h1>

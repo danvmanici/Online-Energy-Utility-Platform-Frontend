@@ -15,6 +15,7 @@ import SensorForm from "./components/sensor-form";
 
 import * as API_USERS from "./api/sensor-api"
 import SensorTable from "./components/sensor-table";
+import NavigationBar from "../navigation-bar";
 
 
 
@@ -71,6 +72,7 @@ class SensorContainer extends React.Component {
     render() {
         return (
             <div>
+                <NavigationBar/>
                 <CardHeader>
                     <strong> Sensor Management </strong>
                 </CardHeader>

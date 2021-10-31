@@ -15,6 +15,7 @@ import DeviceForm from "./components/device-form";
 
 import * as API_USERS from "./api/device-api"
 import DeviceTable from "./components/device-table";
+import NavigationBar from "../navigation-bar";
 
 
 
@@ -71,6 +72,7 @@ class DeviceContainer extends React.Component {
     render() {
         return (
             <div>
+                <NavigationBar/>
                 <CardHeader>
                     <strong> Device Management </strong>
                 </CardHeader>

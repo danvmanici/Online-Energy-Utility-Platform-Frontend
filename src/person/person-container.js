@@ -15,6 +15,7 @@ import PersonForm from "./components/person-form";
 
 import * as API_USERS from "./api/person-api"
 import PersonTable from "./components/person-table";
+import NavigationBar from "../navigation-bar";
 
 
 
@@ -71,6 +72,7 @@ class PersonContainer extends React.Component {
     render() {
         return (
             <div>
+                <NavigationBar/>
                 <CardHeader>
                     <strong> Client Management </strong>
                 </CardHeader>

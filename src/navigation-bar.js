@@ -2,6 +2,7 @@ import React from 'react'
 import logo from './commons/images/icon.png';
 import LoginContainer from "./person/login-container";
 import {
+    Button,
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
@@ -20,7 +21,7 @@ const textStyle = {
 const NavigationBar = () => (
     <div>
         <Navbar color="dark" light expand="md">
-            <NavbarBrand href="/">
+            <NavbarBrand href="/admin">
                 <img src={logo} width={"50"}
                      height={"35"} />
             </NavbarBrand>
@@ -46,7 +47,7 @@ const NavigationBar = () => (
                     </DropdownMenu>
                 </UncontrolledDropdown>
 
-               <LoginContainer></LoginContainer>
+                <Button color="primary" href="/home">Logout </Button>
 
             </Nav>
         </Navbar>
