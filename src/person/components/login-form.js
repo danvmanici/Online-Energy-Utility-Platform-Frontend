@@ -15,11 +15,12 @@ class LoginForm extends React.Component{
     constructor(props) {
         super(props);
         //this.toggleForm = this.toggleForm.bind(this);
-        //this.reloadHandler = this.props.reloadHandler;
+        this.reloadHandler = this.props.reloadHandler;
         let loggedIn = false
         this.state = {
             username: '',
             password: '',
+            role: '',
             loggedIn
             /*
             errorStatus: 0,
@@ -112,7 +113,13 @@ class LoginForm extends React.Component{
 
         console.log(person);
         this.loginUser(person);
-
+        const {role} = this.state
+        if(role==="admin"){
+            localStorage.setItem("token", "a")
+            this.setState({
+                loggedIn: true
+            })
+        }
 
     }
 
