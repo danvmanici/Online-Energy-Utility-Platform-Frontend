@@ -3,10 +3,10 @@ import RestApiClient from "../../commons/api/rest-client";
 
 
 const endpoint = {
-    person: '/client'
+    person: '/device'
 };
 
-function getPersons(callback) {
+function getDevices(callback) {
     let request = new Request(HOST.backend_api + endpoint.person, {
         method: 'GET',
     });
@@ -14,17 +14,17 @@ function getPersons(callback) {
     RestApiClient.performRequest(request, callback);
 }
 
-function getPersonById(params, callback){
+function getDeviceById(params, callback){
     let request = new Request(HOST.backend_api + endpoint.person + params.id, {
-       method: 'GET'
+        method: 'GET'
     });
 
     console.log(request.url);
     RestApiClient.performRequest(request, callback);
 }
 
-function getPersonByName(user, callback){
-    let request = new Request(HOST.backend_api + endpoint.person + user.name, {
+function postDevice(user, callback){
+    let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
         method: 'POST',
         headers : {
             'Accept': 'application/json',
@@ -33,21 +33,12 @@ function getPersonByName(user, callback){
         body: JSON.stringify(user)
     });
 
-    console.log(request.url);
-    RestApiClient.performRequest(request, callback);
-}
-
-function postPerson(user, callback){
-    let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
-
-    });
-
     console.log("URL: " + request.url);
 
     RestApiClient.performRequest(request, callback);
 }
 
-function putPerson(user, callback){
+function putDevice(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/update", {
         method: 'PUT',
         headers : {
@@ -62,7 +53,7 @@ function putPerson(user, callback){
     RestApiClient.performRequest(request, callback);
 }
 
-function deletePerson(user, callback){
+function deleteDevice(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/delete/" + user.id, {
         method: 'DELETE',
         headers : {
@@ -78,10 +69,9 @@ function deletePerson(user, callback){
 }
 
 export {
-    getPersons,
-    getPersonById,
-    getPersonByName,
-    postPerson,
-    putPerson,
-    deletePerson
+    getDevices,
+    getDeviceById,
+    postDevice,
+    putDevice,
+    deleteDevice
 };

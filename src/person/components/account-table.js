@@ -8,26 +8,35 @@ const columns = [
         accessor: 'id',
     },
     {
-        Header: 'Name',
-        accessor: 'name',
-    },
-    {
-        Header: 'Birthdate',
-        accessor: 'birthdate',
+        Header: 'Description',
+        accessor: 'description',
     },
     {
         Header: 'Address',
         accessor: 'address',
+    },
+    {
+        Header: 'Maximum_energy_consumption',
+        accessor: 'maximum_energy_consumption',
+    },
+    {
+        Header: 'Average_energy_consumption',
+        accessor: 'average_energy_consumption',
+    },
+    {
+        Header: 'Client_id',
+        accessor: 'client_id',
     }
 ];
 
 const filters = [
     {
-        accessor: 'name',
+        accessor: 'client_id',
     }
 ];
 
-class PersonTable extends React.Component {
+
+class AccountTable extends React.Component {
 
     constructor(props) {
         super(props);
@@ -48,4 +57,4 @@ class PersonTable extends React.Component {
     }
 }
 
-export default PersonTable;
+export default AccountTable;

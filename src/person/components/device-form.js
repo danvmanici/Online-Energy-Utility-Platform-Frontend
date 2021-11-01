@@ -1,14 +1,14 @@
 import React from 'react';
 import validate from "./validators/person-validators";
 import Button from "react-bootstrap/Button";
-import * as API_USERS from "../api/person-api";
+import * as API_USERS from "../api/device-api";
 import APIResponseErrorMessage from "../../commons/errorhandling/api-response-error-message";
 import {Col, Row} from "reactstrap";
 import { FormGroup, Input, Label} from 'reactstrap';
 
 
 
-class PersonForm extends React.Component {
+class DeviceForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -29,25 +29,33 @@ class PersonForm extends React.Component {
                     valid: false,
                     touched: false,
                 },
-                name: {
+                description: {
                     value: '',
-                    placeholder: 'What is your name?...',
-                    valid: false,
-                    touched: false,
-                    validationRules: {
-                        minLength: 3,
-                        isRequired: true
-                    }
-                },
-                birthdate: {
-                    value: '',
-                    placeholder: 'Birthdate...',
+                    placeholder: 'Description...',
                     valid: false,
                     touched: false,
                 },
                 address: {
                     value: '',
                     placeholder: 'Cluj, Zorilor, Str. Lalelelor 21...',
+                    valid: false,
+                    touched: false,
+                },
+                maximum_energy_consumption: {
+                    value: '',
+                    placeholder: 'Maximum_energy_consumption...',
+                    valid: false,
+                    touched: false,
+                },
+                average_energy_consumption: {
+                    value: '',
+                    placeholder: 'Average_energy_consumption...',
+                    valid: false,
+                    touched: false,
+                },
+                client_id: {
+                    value: '',
+                    placeholder: 'client_id...',
                     valid: false,
                     touched: false,
                 },
@@ -91,8 +99,8 @@ class PersonForm extends React.Component {
 
     };
 
-    registerPerson(person) {
-        return API_USERS.postPerson(person, (result, status, error) => {
+    registerDevice(person) {
+        return API_USERS.postDevice(person, (result, status, error) => {
             if (result !== null && (status === 200 || status === 201)) {
                 console.log("Successfully inserted person with id: " + result);
                 this.reloadHandler();
@@ -105,8 +113,8 @@ class PersonForm extends React.Component {
         });
     }
 
-    updatePerson(person) {
-        return API_USERS.putPerson(person, (result, status, error) => {
+    updateDevice(person) {
+        return API_USERS.putDevice(person, (result, status, error) => {
             if (result !== null && (status === 200 || status === 201)) {
                 console.log("Successfully inserted person with id: " + result);
                 this.reloadHandler();
@@ -119,8 +127,8 @@ class PersonForm extends React.Component {
         });
     }
 
-    removePerson(person) {
-        return API_USERS.deletePerson(person, (result, status, error) => {
+    removeDevice(person) {
+        return API_USERS.deleteDevice(person, (result, status, error) => {
             if (result !== null && (status === 200 || status === 201)) {
                 console.log("Successfully inserted person with id: " + result);
                 this.reloadHandler();
@@ -135,25 +143,29 @@ class PersonForm extends React.Component {
 
     handleSubmit() {
         let person = {
-            name: this.state.formControls.name.value,
-            birthdate: this.state.formControls.birthdate.value,
-            address: this.state.formControls.address.value
+            description: this.state.formControls.description.value,
+            address: this.state.formControls.address.value,
+            maximum_energy_consumption: this.state.formControls.maximum_energy_consumption.value,
+            average_energy_consumption: this.state.formControls.average_energy_consumption.value,
+            client_id: this.state.formControls.client_id.value
         };
 
         console.log(person);
-        this.registerPerson(person);
+        this.registerDevice(person);
     }
 
     handleSubmitUpdate() {
         let person = {
             id: this.state.formControls.id.value,
-            name: this.state.formControls.name.value,
-            birthdate: this.state.formControls.birthdate.value,
-            address: this.state.formControls.address.value
+            description: this.state.formControls.description.value,
+            address: this.state.formControls.address.value,
+            maximum_energy_consumption: this.state.formControls.maximum_energy_consumption.value,
+            average_energy_consumption: this.state.formControls.average_energy_consumption.value,
+            client_id: this.state.formControls.client_id.value
         };
 
         console.log(person);
-        this.updatePerson(person);
+        this.updateDevice(person);
     }
 
     handleSubmitDelete() {
@@ -162,7 +174,7 @@ class PersonForm extends React.Component {
         };
 
         console.log(person);
-        this.removePerson(person);
+        this.removeDevice(person);
     }
 
     render() {
@@ -175,23 +187,20 @@ class PersonForm extends React.Component {
                            defaultValue={this.state.formControls.id.value}
                            touched={this.state.formControls.id.touched? 1 : 0}
                            valid={this.state.formControls.id.valid}
-                           //required
+                        //required
                     />
                 </FormGroup>
 
-                <FormGroup id='name'>
-                    <Label for='nameField'> Name: </Label>
-                    <Input name='name' id='nameField' placeholder={this.state.formControls.name.placeholder}
+                <FormGroup id='description'>
+                    <Label for='descriptionField'> Description: </Label>
+                    <Input name='description' id='descriptionField' placeholder={this.state.formControls.description.placeholder}
                            onChange={this.handleChange}
-                           defaultValue={this.state.formControls.name.value}
-                           touched={this.state.formControls.name.touched? 1 : 0}
-                           valid={this.state.formControls.name.valid}
-                           //required
+                           defaultValue={this.state.formControls.description.value}
+                           touched={this.state.formControls.description.touched? 1 : 0}
+                           valid={this.state.formControls.description.valid}
+                        //required
                     />
-                    {this.state.formControls.name.touched && !this.state.formControls.name.valid &&
-                    <div className={"error-message row"}> * Name must have at least 3 characters </div>}
                 </FormGroup>
-
 
                 <FormGroup id='address'>
                     <Label for='addressField'> Address: </Label>
@@ -200,27 +209,51 @@ class PersonForm extends React.Component {
                            defaultValue={this.state.formControls.address.value}
                            touched={this.state.formControls.address.touched? 1 : 0}
                            valid={this.state.formControls.address.valid}
-                           //required
+                        //required
                     />
                 </FormGroup>
 
-                <FormGroup id='birthdate'>
-                    <Label for='birthdateField'> Birthdate: </Label>
-                    <Input name='birthdate' id='birthdateField' placeholder={this.state.formControls.birthdate.placeholder}
-                           min={0} max={100} type="date"
+
+                <FormGroup id='maximum_energy_consumption'>
+                    <Label for='maximum_energy_consumptionField'> Maximum_energy_consumption: </Label>
+                    <Input name='maximum_energy_consumption' id='maximum_energy_consumptionField' placeholder={this.state.formControls.maximum_energy_consumption.placeholder}
+                           type="int"
                            onChange={this.handleChange}
-                           defaultValue={this.state.formControls.birthdate.value}
-                           touched={this.state.formControls.birthdate.touched? 1 : 0}
-                           valid={this.state.formControls.birthdate.valid}
-                           //required
+                           defaultValue={this.state.formControls.maximum_energy_consumption.value}
+                           touched={this.state.formControls.maximum_energy_consumption.touched? 1 : 0}
+                           valid={this.state.formControls.maximum_energy_consumption.valid}
+                        //required
                     />
                 </FormGroup>
 
-                    <Row>
-                            <Button type={"submit"}  onClick={this.handleSubmit}>  Insert </Button>
-                            <Button type={"submit"}  onClick={this.handleSubmitUpdate}>  Update </Button>
-                            <Button type={"submit"}  onClick={this.handleSubmitDelete}>  Delete </Button>
-                    </Row>
+                <FormGroup id='average_energy_consumption'>
+                    <Label for='average_energy_consumptionField'> Average_energy_consumption: </Label>
+                    <Input name='average_energy_consumption' id='average_energy_consumptionField' placeholder={this.state.formControls.average_energy_consumption.placeholder}
+                           type="int"
+                           onChange={this.handleChange}
+                           defaultValue={this.state.formControls.average_energy_consumption.value}
+                           touched={this.state.formControls.average_energy_consumption.touched? 1 : 0}
+                           valid={this.state.formControls.average_energy_consumption.valid}
+                        //required
+                    />
+                </FormGroup>
+
+                <FormGroup id='client_id'>
+                    <Label for='client_idField'> Id: </Label>
+                    <Input name='client_id' id='client_idField' placeholder={this.state.formControls.client_id.placeholder}
+                           onChange={this.handleChange}
+                           defaultValue={this.state.formControls.client_id.value}
+                           touched={this.state.formControls.client_id.touched? 1 : 0}
+                           valid={this.state.formControls.client_id.valid}
+                        //required
+                    />
+                </FormGroup>
+
+                <Row>
+                    <Button type={"submit"}  onClick={this.handleSubmit}>  Insert </Button>
+                    <Button type={"submit"}  onClick={this.handleSubmitUpdate}>  Update </Button>
+                    <Button type={"submit"}  onClick={this.handleSubmitDelete}>  Delete </Button>
+                </Row>
 
                 {
                     this.state.errorStatus > 0 &&
@@ -231,4 +264,4 @@ class PersonForm extends React.Component {
     }
 }
 
-export default PersonForm;
+export default DeviceForm;

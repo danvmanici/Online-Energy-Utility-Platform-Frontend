@@ -8,26 +8,26 @@ const columns = [
         accessor: 'id',
     },
     {
-        Header: 'Name',
-        accessor: 'name',
+        Header: 'Description',
+        accessor: 'description',
     },
     {
-        Header: 'Birthdate',
-        accessor: 'birthdate',
+        Header: 'Max_value',
+        accessor: 'max_value',
     },
     {
-        Header: 'Address',
-        accessor: 'address',
+        Header: 'SmartDevice_id',
+        accessor: 'smartDevice_id',
     }
 ];
 
 const filters = [
     {
-        accessor: 'name',
+        accessor: 'smartDevice_id',
     }
 ];
 
-class PersonTable extends React.Component {
+class SensorTable extends React.Component {
 
     constructor(props) {
         super(props);
@@ -48,4 +48,4 @@ class PersonTable extends React.Component {
     }
 }
 
-export default PersonTable;
+export default SensorTable;

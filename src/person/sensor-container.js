@@ -10,16 +10,16 @@ import {
     ModalHeader,
     Row
 } from 'reactstrap';
-import PersonForm from "./components/person-form";
+import SensorForm from "./components/sensor-form";
 
 
-import * as API_USERS from "./api/person-api"
-import PersonTable from "./components/person-table";
+import * as API_USERS from "./api/sensor-api"
+import SensorTable from "./components/sensor-table";
 import NavigationBar from "../navigation-bar";
 
 
 
-class PersonContainer extends React.Component {
+class SensorContainer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -36,11 +36,11 @@ class PersonContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchPersons();
+        this.fetchSensors();
     }
 
-    fetchPersons() {
-        return API_USERS.getPersons((result, status, err) => {
+    fetchSensors() {
+        return API_USERS.getSensors((result, status, err) => {
 
             if (result !== null && status === 200) {
                 this.setState({
@@ -66,7 +66,7 @@ class PersonContainer extends React.Component {
             isLoaded: false
         });
         this.toggleForm();
-        this.fetchPersons();
+        this.fetchSensors();
     }
 
     render() {
@@ -74,33 +74,33 @@ class PersonContainer extends React.Component {
             <div>
                 <NavigationBar/>
                 <CardHeader>
-                    <strong> Client Management </strong>
+                    <strong> Sensor Management </strong>
                 </CardHeader>
                 <Card>
                     <br/>
                     <Row>
                         <Col sm={{size: '8', offset: 1}}>
-                            <Button color="primary" onClick={this.toggleForm}>CRUD Client </Button>
+                            <Button color="primary" onClick={this.toggleForm}>CRUD Sensor </Button>
                         </Col>
 
                     </Row>
                     <br/>
                     <Row>
                         <Col sm={{size: '8', offset: 1}}>
-                            {this.state.isLoaded && <PersonTable tableData = {this.state.tableData}/>}
+                            {this.state.isLoaded && <SensorTable tableData = {this.state.tableData}/>}
                             {this.state.errorStatus > 0 && <APIResponseErrorMessage
-                                                            errorStatus={this.state.errorStatus}
-                                                            error={this.state.error}
-                                                        />   }
+                                errorStatus={this.state.errorStatus}
+                                error={this.state.error}
+                            />   }
                         </Col>
                     </Row>
                 </Card>
 
                 <Modal isOpen={this.state.selected} toggle={this.toggleForm}
                        className={this.props.className} size="lg">
-                    <ModalHeader toggle={this.toggleForm}> Client: </ModalHeader>
+                    <ModalHeader toggle={this.toggleForm}> Sensor: </ModalHeader>
                     <ModalBody>
-                        <PersonForm reloadHandler={this.reload}/>
+                        <SensorForm reloadHandler={this.reload}/>
                     </ModalBody>
                 </Modal>
 
@@ -113,4 +113,4 @@ class PersonContainer extends React.Component {
 }
 
 
-export default PersonContainer;
+export default SensorContainer;
