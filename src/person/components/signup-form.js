@@ -10,18 +10,18 @@ import PersonContainer from "../person-container"
 import Admin from "./Admin";
 
 
-class LoginForm extends React.Component{
+class SignUpForm extends React.Component{
 
     constructor(props) {
         super(props);
         //this.toggleForm = this.toggleForm.bind(this);
         this.reloadHandler = this.props.reloadHandler;
-        let loggedIn = false
+
         this.state = {
             username: '',
             password: '',
             role: '',
-            loggedIn,
+
 
             errorStatus: 0,
             error: null
@@ -36,14 +36,10 @@ class LoginForm extends React.Component{
 
 
 
-    loginUser(person) {
-        return API_USERS.loginUser(person, (result, status, error) => {
+    loginSignUp(person) {
+        return API_USERS.singUpUser(person, (result, status, error) => {
             if (result !== null && (status === 200 || status === 201)) {
                 console.log("Successfully: " + result);
-                this.setState({
-                    loggedIn: true,
-                    role: result.role
-                })
                 this.reloadHandler();
             } else {
                 this.setState(({
@@ -59,10 +55,11 @@ class LoginForm extends React.Component{
         let person = {
             username: this.state.username,
             password: this.state.password,
+            role: this.state.role,
         };
 
         console.log(person);
-        this.loginUser(person);
+        this.loginSignUp(person);
 
     }
 
@@ -73,13 +70,6 @@ class LoginForm extends React.Component{
     }
 
     render() {
-        if (this.state.loggedIn) {
-            localStorage.setItem("role", this.state.role);
-            if(this.state.role==="admin")
-                return <Redirect to="/admin"/>
-            if(this.state.role==="client")
-                return <Redirect to="/account"/>
-        }
 
         return (
             <div>
@@ -87,6 +77,8 @@ class LoginForm extends React.Component{
                     <input type="text" placeholder="username" name={"username"} value={this.state.username} onChange={this.onChange}/>
                     <br/>
                     <input type="text" placeholder="password" name={"password"} value={this.state.password} onChange={this.onChange}/>
+                    <br/>
+                    <input type="text" placeholder="role" name={"role"} value={this.state.role} onChange={this.onChange}/>
                     <br/>
                     <input type = "submit" />
                 </form>
@@ -96,4 +88,4 @@ class LoginForm extends React.Component{
     }
 }
 
-export default LoginForm
+export default SignUpForm

@@ -18,6 +18,11 @@ const textStyle = {
     textDecoration: 'none'
 };
 
+const handleLogout =() => {
+    localStorage.clear();
+    window.location.pathname="/home";
+};
+
 const NavigationBar = () => (
     <div>
         <Navbar color="dark" light expand="md">
@@ -47,7 +52,7 @@ const NavigationBar = () => (
                     </DropdownMenu>
                 </UncontrolledDropdown>
 
-                <Button color="primary" href="/home">Logout </Button>
+                <Button color="primary" onClick={handleLogout}>Logout </Button>
 
             </Nav>
         </Navbar>

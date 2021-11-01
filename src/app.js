@@ -12,18 +12,19 @@ import {Redirect} from "react-router-dom";
 import ErrorPage from './commons/errorhandling/error-page';
 import styles from './commons/styles/project-style.css';
 import Admin from "./person/components/Admin";
+import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRouteClient from "./ProtectedRouteClient";
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
         this.state={
-            role: localStorage.getItem("role") || ''
+            role: localStorage.getItem('role') || ''
         }
     }
 
     render() {
-
 
         return (
             <div className={styles.back}>
@@ -31,7 +32,9 @@ class App extends React.Component {
                 <div>
 
                     <Switch>
-
+                        <ProtectedRoute exact
+                                        path='/admin'
+                                        component={Admin}/>
 
 
                         <Route
@@ -40,29 +43,30 @@ class App extends React.Component {
                             render={() => <Home/>}
                         />
 
-                        <Route
+                        <ProtectedRoute
                             exact
                             path='/client'
-                            render={() => <PersonContainer/>}
+                            component={PersonContainer}
                         />
 
-                        <Route
+                        <ProtectedRoute
                             exact
                             path='/device'
-                            render={() => <DeviceContainer/>}
+                            component={DeviceContainer}
                         />
 
-                        <Route
+                        <ProtectedRoute
                             exact
                             path='/sensor'
-                            render={() => <SensorContainer/>}
+                            component={SensorContainer}
                         />
 
-                        <Route
+                        <ProtectedRouteClient
                             exact
-                            path='/admin'
-                            render={() => <Admin/>}
+                            path='/account'
+                            component={SensorContainer}
                         />
+
 
                         {/*Error*/}
                         <Route

@@ -1,8 +1,8 @@
 import React from 'react'
 import logo from './commons/images/icon.png';
 import LoginContainer from "./person/login-container";
-import SignUpContainer from "./person/signup-container";
 import {
+    Button,
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
@@ -18,10 +18,15 @@ const textStyle = {
     textDecoration: 'none'
 };
 
-const NavigationBarNoMenu = () => (
+const handleLogout =() => {
+    localStorage.clear();
+    window.location.pathname="/home";
+};
+
+const NavigationBar = () => (
     <div>
         <Navbar color="dark" light expand="md">
-            <NavbarBrand href="/home">
+            <NavbarBrand href="/account">
                 <img src={logo} width={"50"}
                      height={"35"} />
             </NavbarBrand>
@@ -29,11 +34,11 @@ const NavigationBarNoMenu = () => (
 
 
 
-                <LoginContainer></LoginContainer>
-                <SignUpContainer></SignUpContainer>
+                <Button color="primary" onClick={handleLogout}>Logout </Button>
+
             </Nav>
         </Navbar>
     </div>
 );
 
-export default NavigationBarNoMenu
+export default NavigationBar

@@ -21,6 +21,22 @@ function loginUser(params, callback){
     RestApiClient.performRequest(request, callback);
 }
 
+function singUpUser(user, callback){
+    let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
+        method: 'POST',
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)
+    });
+
+    console.log("URL: " + request.url);
+
+    RestApiClient.performRequest(request, callback);
+}
+
 export {
-  loginUser
+    loginUser,
+    singUpUser
 };
