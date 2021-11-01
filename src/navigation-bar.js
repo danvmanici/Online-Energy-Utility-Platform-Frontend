@@ -20,7 +20,7 @@ const textStyle = {
 
 const handleLogout =() => {
     localStorage.clear();
-    window.location.pathname="/home";
+    window.location.pathname="/";
 };
 
 const NavigationBar = () => (

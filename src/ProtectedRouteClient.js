@@ -9,7 +9,7 @@ function ProtectedRouteClient({ component: Component, ...restOfProps }) {
         <Route
             {...restOfProps}
             render={(props) =>
-                isAuthenticated==="client" ? <Component {...props} /> : <Redirect to="/home" />
+                isAuthenticated==="client" ? <Component {...props} /> : <Redirect to="/" />
             }
         />
     );

@@ -40,7 +40,7 @@ class App extends React.Component {
 
                         <Route
                             exact
-                            path='/home'
+                            path='/'
                             render={() => <Home/>}
                         />
 
