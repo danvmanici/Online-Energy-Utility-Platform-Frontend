@@ -75,6 +75,7 @@ class LoginForm extends React.Component{
     render() {
         if (this.state.loggedIn) {
             localStorage.setItem("role", this.state.role);
+            localStorage.setItem("username", this.state.username);
             if(this.state.role==="admin")
                 return <Redirect to="/admin"/>
             if(this.state.role==="client")

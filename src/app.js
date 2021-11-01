@@ -14,6 +14,7 @@ import styles from './commons/styles/project-style.css';
 import Admin from "./person/components/Admin";
 import ProtectedRoute from "./ProtectedRoute";
 import ProtectedRouteClient from "./ProtectedRouteClient";
+import AccountContainer from "./person/account-container";
 
 class App extends React.Component {
 
@@ -64,7 +65,7 @@ class App extends React.Component {
                         <ProtectedRouteClient
                             exact
                             path='/account'
-                            component={SensorContainer}
+                            component={AccountContainer}
                         />
 
 

@@ -23,7 +23,7 @@ const handleLogout =() => {
     window.location.pathname="/home";
 };
 
-const NavigationBar = () => (
+const NavigationBarClient = () => (
     <div>
         <Navbar color="dark" light expand="md">
             <NavbarBrand href="/account">
@@ -32,8 +32,6 @@ const NavigationBar = () => (
             </NavbarBrand>
             <Nav className="mr-auto" navbar>
 
-
-
                 <Button color="primary" onClick={handleLogout}>Logout </Button>
 
             </Nav>
@@ -41,4 +39,4 @@ const NavigationBar = () => (
     </div>
 );
 
-export default NavigationBar
+export default NavigationBarClient

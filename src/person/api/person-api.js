@@ -23,14 +23,23 @@ function getPersonById(params, callback){
     RestApiClient.performRequest(request, callback);
 }
 
-function postPerson(user, callback){
-    let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
+function getPersonByName(user, callback){
+    let request = new Request(HOST.backend_api + endpoint.person + user.name, {
         method: 'POST',
         headers : {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(user)
+    });
+
+    console.log(request.url);
+    RestApiClient.performRequest(request, callback);
+}
+
+function postPerson(user, callback){
+    let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
+
     });
 
     console.log("URL: " + request.url);
@@ -71,6 +80,7 @@ function deletePerson(user, callback){
 export {
     getPersons,
     getPersonById,
+    getPersonByName,
     postPerson,
     putPerson,
     deletePerson
