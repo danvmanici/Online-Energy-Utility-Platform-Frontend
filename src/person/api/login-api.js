@@ -10,7 +10,7 @@ function loginUser(params, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/login" , {
         method: 'POST',
         headers : {
-            "Access-Control-Allow-Origin" : "*https://mvd-ds2021-30642-frontend.herokuapp.com",
+            "Access-Control-Allow-Origin" : "*",
             "Access-Control-Allow-Credentials" : true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ function singUpUser(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
         method: 'POST',
         headers : {
-            "Access-Control-Allow-Origin" : "https://mvd-ds2021-30642-frontend.herokuapp.com",
+            "Access-Control-Allow-Origin" : "*",
             "Access-Control-Allow-Credentials" : true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
