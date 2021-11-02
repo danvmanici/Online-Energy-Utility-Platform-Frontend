@@ -27,6 +27,8 @@ function getPersonByName(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + user.name, {
         method: 'POST',
         headers : {
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
@@ -39,7 +41,14 @@ function getPersonByName(user, callback){
 
 function postPerson(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
-
+        method: 'POST',
+        headers : {
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)
     });
 
     console.log("URL: " + request.url);
@@ -51,6 +60,8 @@ function putPerson(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/update", {
         method: 'PUT',
         headers : {
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
@@ -66,6 +77,8 @@ function deletePerson(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/delete/" + user.id, {
         method: 'DELETE',
         headers : {
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
