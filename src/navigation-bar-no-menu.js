@@ -21,7 +21,7 @@ const textStyle = {
 const NavigationBarNoMenu = () => (
     <div>
         <Navbar color="dark" light expand="md">
-            <NavbarBrand href="/home">
+            <NavbarBrand href="/">
                 <img src={logo} width={"50"}
                      height={"35"} />
             </NavbarBrand>
