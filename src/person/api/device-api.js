@@ -27,6 +27,8 @@ function postDevice(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/insert" , {
         method: 'POST',
         headers : {
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
@@ -42,6 +44,8 @@ function putDevice(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/update", {
         method: 'PUT',
         headers : {
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
@@ -57,6 +61,8 @@ function deleteDevice(user, callback){
     let request = new Request(HOST.backend_api + endpoint.person + "/delete/" + user.id, {
         method: 'DELETE',
         headers : {
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
