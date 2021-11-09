@@ -33,10 +33,11 @@ class App extends React.Component {
                 <div>
 
                     <Switch>
-                        <ProtectedRoute exact
-                                        path='/admin'
-                                        component={Admin}/>
-
+                        <ProtectedRoute 
+                            exact
+                            path='/admin'
+                            component={Admin}
+                        />
 
                         <Route
                             exact
