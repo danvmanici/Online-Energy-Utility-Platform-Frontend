@@ -36,7 +36,7 @@ class App extends React.Component {
                         <ProtectedRoute 
                             exact
                             path='/admin'
-                            component={PersonContainer}
+                            component={Admin}
                         />
 
                         <Route
