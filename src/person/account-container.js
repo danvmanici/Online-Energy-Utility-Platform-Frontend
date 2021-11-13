@@ -14,6 +14,7 @@ import {
 import AccountTable from "./components/account-table";
 
 import * as API_USERS from "./api/device-api"
+import * as API_USERS_SENSOR from "./api/sensor-api"
 import * as API_USERS_LOGIN from "./api/person-api"
 import DeviceTable from "./components/device-table";
 import NavigationBarClient from "../navigation-bar-clients";
@@ -31,11 +32,37 @@ class AccountContainer extends React.Component {
             tableData: [],
             isLoaded: false,
             errorStatus: 0,
-            error: null
+            error: null,
+            max_value: ''
         };
-
+        
     }
 
+    componentDidMount() {
+        this.fetchSensors();
+    }
+
+
+    fetchSensors() {
+        let person = {
+            name: this.state.username
+        };
+        return API_USERS_SENSOR.getSensorValue(person, (result, status, err) => {
+
+            if (result !== null && status === 200) {  
+                this.setState({                               
+                  // tableData: result,
+                    isLoaded: true
+                });
+                console.log("hey" + result.max_value);
+            } else {
+                this.setState(({
+                    errorStatus: status,
+                    error: err
+                }));
+            }
+        });
+    }
 
     render() {
         return (

@@ -74,10 +74,20 @@ function deleteSensor(user, callback){
     RestApiClient.performRequest(request, callback);
 }
 
+function getSensorValue(params, callback){
+    let request = new Request(HOST.backend_api + endpoint.person + "/value/" + params.name, {
+        method: 'GET'
+    });
+
+    console.log(request.url);
+    RestApiClient.performRequest(request, callback);
+}
+
 export {
     getSensors,
     getSensorById,
     postSensor,
     putSensor,
-    deleteSensor
+    deleteSensor,
+    getSensorValue
 };
