@@ -25,6 +25,7 @@ class AccountContainer extends React.Component {
 
     constructor(props) {
         super(props);
+        this.reload = this.reload.bind(this);
         this.state = {
             username: localStorage.getItem("username"),
             selected: false,
@@ -33,10 +34,18 @@ class AccountContainer extends React.Component {
             isLoaded: false,
             errorStatus: 0,
             error: null,
-            max_value: ''
+            value: ''
         };
         
     }
+
+    reload() {
+        this.setState({
+            isLoaded: false
+        });
+        this.fetchSensors();
+    }
+
 
     componentDidMount() {
         this.fetchSensors();
@@ -48,13 +57,14 @@ class AccountContainer extends React.Component {
             name: this.state.username
         };
         return API_USERS_SENSOR.getSensorValue(person, (result, status, err) => {
-
             if (result !== null && status === 200) {  
-                this.setState({                               
-                  // tableData: result,
+                this.setState({ ...this.state,                              
+                    tableData: [result],
+                    value: result.max_value,
                     isLoaded: true
                 });
-                console.log("hey" + result.max_value);
+                console.log(this.state)
+                
             } else {
                 this.setState(({
                     errorStatus: status,
@@ -76,7 +86,8 @@ class AccountContainer extends React.Component {
 
                     <Row>
                         <Col sm={{size: '8', offset: 1}}>
-                            {this.state.isLoaded && <AccountTable tableData = {this.state.tableData}/>}
+                            {this.state.isLoaded && <AccountTable tableData = {this.state.tableData} 
+                            />}
                             {this.state.errorStatus > 0 && <APIResponseErrorMessage
                                 errorStatus={this.state.errorStatus}
                                 error={this.state.error}
