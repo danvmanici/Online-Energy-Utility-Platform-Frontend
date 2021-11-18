@@ -4,7 +4,7 @@ import { Redirect, Route } from "react-router-dom";
 function ProtectedRoute({ component: Component, ...restOfProps }) {
     const isAuthenticated = localStorage.getItem("role");
     console.log("this", isAuthenticated);
-    localStorage.clear()
+    localStorage.removeItem("username")
     return (
         <Route
             {...restOfProps}
