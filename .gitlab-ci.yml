@@ -21,6 +21,7 @@ build:
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
 
+    
 deploy:
   stage: deploy
   image: ruby:2.4
