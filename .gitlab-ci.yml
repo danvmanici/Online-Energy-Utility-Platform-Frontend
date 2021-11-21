@@ -21,4 +21,18 @@ build:
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
 
+deploy:
+  stage: deploy
+  image: ruby:2.4
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=react-demo-ds2020 --api-key=$HEROKU_API_KEY --skip_cleanup
+  environment:
+    name: staging
+    url: https://mvd-ds2021-30642-backend.herokuapp.com/
+  only:
+    - production
+
 

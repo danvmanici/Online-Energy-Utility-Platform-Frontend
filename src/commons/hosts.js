@@ -1,3 +1,3 @@
 export const HOST = {
-    backend_api: 'http://localhost:8080',
+    backend_api: 'https://mvd-ds2021-30642-backend.herokuapp.com/',
 };
